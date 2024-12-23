@@ -51,14 +51,7 @@ const useAuth = () => {
 
     const logout = useCallback(async () => {
         if (accessToken) {
-            const response = await authApi.logout(accessToken);
-            if (response.error) {
-                toast({
-                    title: "Error",
-                    description: response.error,
-                    variant: "destructive",
-                });
-            }
+            await authApi.logout(accessToken);
         }
         setAccessToken(null);
         setAuth(null);
@@ -72,11 +65,6 @@ const useAuth = () => {
         const response = await authApi.getProfile(accessToken);
         if (response.error) {
             logout();
-            toast({
-                title: "Error",
-                description: response.error,
-                variant: "destructive",
-            });
         } else {
             setAuth(response.data);
         }

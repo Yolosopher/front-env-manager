@@ -48,8 +48,7 @@ export class ApiClient {
                 data,
                 status: statusCode,
             };
-        } catch (error) {
-            console.error(error);
+        } catch {
             return {
                 error: errorMessage,
                 status: statusCode,
@@ -94,8 +93,7 @@ export class ApiClient {
                 data,
                 status: statusCode,
             };
-        } catch (error) {
-            console.error(error);
+        } catch {
             return {
                 error: errorMessage,
                 status: statusCode,
@@ -140,8 +138,7 @@ export class ApiClient {
                 data,
                 status: statusCode,
             };
-        } catch (error) {
-            console.error(error);
+        } catch {
             return {
                 error: errorMessage,
                 status: statusCode,
@@ -182,8 +179,7 @@ export class ApiClient {
                 data,
                 status: statusCode,
             };
-        } catch (error) {
-            console.error(error);
+        } catch {
             return {
                 error: errorMessage,
                 status: statusCode,

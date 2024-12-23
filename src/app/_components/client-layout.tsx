@@ -3,6 +3,7 @@
 import { useEffect } from "react";
 import useAuthStore from "@/stores/auth-store";
 import useAuth from "@/hooks/use-auth";
+import Header from "@/components/header/header";
 
 const ClientLayout = ({ children }: { children: React.ReactNode }) => {
     const { accessToken } = useAuthStore();
@@ -12,7 +13,12 @@ const ClientLayout = ({ children }: { children: React.ReactNode }) => {
         getProfile();
     }, [accessToken, getProfile]);
 
-    return children;
+    return (
+        <>
+            <Header />
+            {children}
+        </>
+    );
 };
 
 export default ClientLayout;
