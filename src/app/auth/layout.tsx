@@ -10,13 +10,16 @@ export default function AuthLayout({
     children: React.ReactNode;
 }>) {
     const router = useRouter();
-    const { auth } = useAuthStore();
+    const { auth, accessToken } = useAuthStore();
 
     useEffect(() => {
+        if (accessToken === null) {
+            return;
+        }
         if (auth) {
             router.replace("/dashboard");
         }
-    }, [auth, router]);
+    }, [auth, accessToken, router]);
 
-    return children;
+    return accessToken === null ? null : children;
 }
