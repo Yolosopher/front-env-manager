@@ -46,29 +46,37 @@ const useAuth = () => {
                 description: "Login successful",
             });
             setAccessToken(response.data.accessToken);
+            getProfile();
         }
     };
 
     const logout = useCallback(async () => {
-        if (accessToken) {
-            await authApi.logout(accessToken);
-        }
-        setAccessToken(null);
+        setAccessToken("");
         setAuth(null);
-    }, [accessToken, setAccessToken, setAuth]);
+    }, [setAccessToken, setAuth]);
 
     const getProfile = useCallback(async () => {
+        const getServerResponse = async (act: string) => {
+            const response = await authApi.getProfile(act);
+            if (response.error) {
+                logout();
+            } else {
+                setAuth(response.data);
+            }
+        };
         if (!accessToken) {
-            setAuth(null);
-            return;
-        }
-        const response = await authApi.getProfile(accessToken);
-        if (response.error) {
-            logout();
+            const lsAccessToken = localStorage.getItem("accessToken") || "";
+            if (!lsAccessToken) {
+                logout();
+            } else {
+                setAccessToken(lsAccessToken);
+                getServerResponse(lsAccessToken);
+                return;
+            }
         } else {
-            setAuth(response.data);
+            getServerResponse(accessToken);
         }
-    }, [accessToken, logout, setAuth]);
+    }, [accessToken, logout, setAccessToken, setAuth]);
 
     return {
         signup,

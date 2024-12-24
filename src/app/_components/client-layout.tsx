@@ -10,7 +10,9 @@ const ClientLayout = ({ children }: { children: React.ReactNode }) => {
     const { getProfile } = useAuth();
 
     useEffect(() => {
-        getProfile();
+        if (accessToken === null) {
+            getProfile();
+        }
     }, [accessToken, getProfile]);
 
     return (
