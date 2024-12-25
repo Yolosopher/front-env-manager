@@ -94,7 +94,7 @@ const DockMenu = () => {
                     </Tooltip>
                 </DockIcon>
                 <Separator orientation="vertical" className="h-full py-2" />
-                {navbar[auth ? "protected" : "public"].map((item) => (
+                {navbar[auth?.id ? "protected" : "public"].map((item) => (
                     <DockIcon key={item.label}>
                         <Tooltip>
                             <TooltipTrigger asChild>

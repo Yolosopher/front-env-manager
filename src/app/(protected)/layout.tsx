@@ -13,18 +13,19 @@ export default function ProtectedLayout({
     children: React.ReactNode;
 }>) {
     const router = useRouter();
-    const { auth, accessToken } = useAuthStore();
+    const { auth } = useAuthStore();
 
     useEffect(() => {
-        if (accessToken === null) {
+        console.log("auth", auth);
+        if (auth === null) {
             return;
         }
-        if (!auth) {
+        if (!auth.id) {
             router.replace("/auth/login");
         }
-    }, [auth, accessToken, router]);
+    }, [auth, router]);
 
-    return accessToken === null ? null : (
+    return auth === null ? null : (
         <QueryClientProvider client={queryClient}>
             {children}
         </QueryClientProvider>
