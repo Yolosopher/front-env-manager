@@ -4,7 +4,7 @@ import { redirect } from "next/navigation";
 const RenderTree = ({ elements }: { elements: TreeViewElement[] }) => {
     return (
         <>
-            {elements.map(({ children, name: projectName, isSelectable }) => (
+            {elements?.map(({ children, name: projectName, isSelectable }) => (
                 <Folder
                     key={projectName}
                     element={projectName}

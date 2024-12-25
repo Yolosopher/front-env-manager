@@ -17,14 +17,11 @@ const RenderEnvFile = ({ environment }: RenderEnvFileProps) => {
             };
         }
         const envCode = jsonToEnv(environment.variables);
-        console.log("envCode", envCode);
         return {
             envCode,
-            filename: `.env.${environment.name}`,
+            filename: `${environment.name}.env`,
         };
     }, [environment]);
-
-    console.log(envCode);
 
     return (
         <div className="w-full h-full overflow-hidden">
