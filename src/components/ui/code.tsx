@@ -1,20 +1,29 @@
 "use client";
 
-import { Copy, DownloadIcon, FileIcon } from "lucide-react";
+import { shikiEnvLanguage } from "@/lib/shikiEnvLanguage";
+import { cn } from "@/lib/utils";
+import { Copy, DownloadIcon, FileIcon, Trash2 } from "lucide-react";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 import { createHighlighter, LanguageInput } from "shiki";
-import { shikiEnvLanguage } from "@/lib/shikiEnvLanguage";
+import Confirmation from "../confirmation";
 import { Button } from "./button";
-import { cn } from "@/lib/utils";
 
 interface CodeProps {
     code: string;
     language: string;
     filename: string;
+    removeEnvironment: (envId: string) => Promise<void>;
+    environmentId: string;
 }
 
-export default function Code({ code, language, filename }: CodeProps) {
+export default function Code({
+    code,
+    language,
+    filename,
+    removeEnvironment,
+    environmentId,
+}: CodeProps) {
     const { theme, systemTheme } = useTheme();
     const [highlightedCode, setHighlightedCode] = useState<string>("");
 
@@ -56,6 +65,18 @@ export default function Code({ code, language, filename }: CodeProps) {
                 <FileIcon className="mr-2 h-4 w-4" />
                 {filename}
                 <div className="flex items-center ml-auto gap-2">
+                    <Confirmation
+                        title="Delete Environment"
+                        description="Are you sure you want to delete this environment?"
+                        onConfirm={() => {
+                            removeEnvironment(environmentId);
+                        }}
+                        triggerContent={
+                            <Button variant="ghost" size="icon">
+                                <Trash2 className="h-4 w-4" />
+                            </Button>
+                        }
+                    />
                     <Button
                         variant="ghost"
                         size="icon"
@@ -78,7 +99,6 @@ export default function Code({ code, language, filename }: CodeProps) {
                             a.href = url;
                             // Use "./" to preserve the leading dot in the filename
                             a.download = filename;
-                            console.log(a.download);
                             a.click();
                             window.URL.revokeObjectURL(url);
                         }}

@@ -56,7 +56,7 @@ const FileTree = () => {
                 ...project.environments!,
                 {
                     id: randomUID(),
-                    name: "New Environment",
+                    name: "New",
                     isSelectable: true,
                 },
             ].map((env) => ({

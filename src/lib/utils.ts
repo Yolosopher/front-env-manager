@@ -16,5 +16,29 @@ export function jsonToEnv(json: EnvJson): string {
 }
 
 export function randomUID(): string {
-    return uuidv4()
+    return uuidv4();
+}
+
+export function parseEnvString(envString: string): Record<string, string> {
+    const result: Record<string, string> = {};
+
+    envString.split("\n").forEach((line) => {
+        // Remove comments and trim whitespace
+        const cleanedLine = line.trim();
+        if (!cleanedLine || cleanedLine.startsWith("#")) {
+            return; // Ignore empty lines or comments
+        }
+
+        // Split key and value
+        const [key, ...valueParts] = cleanedLine.split("=");
+        const keyTrimmed = key.trim();
+        const value = valueParts.join("=").trim(); // Handle cases with '=' in the value
+
+        // Remove quotes if present
+        const unquotedValue = value.replace(/^["']|["']$/g, "");
+
+        result[keyTrimmed] = unquotedValue;
+    });
+
+    return result;
 }

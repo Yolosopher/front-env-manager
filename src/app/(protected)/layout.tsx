@@ -16,7 +16,6 @@ export default function ProtectedLayout({
     const { auth } = useAuthStore();
 
     useEffect(() => {
-        console.log("auth", auth);
         if (auth === null) {
             return;
         }

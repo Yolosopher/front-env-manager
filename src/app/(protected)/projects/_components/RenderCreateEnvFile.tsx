@@ -53,11 +53,9 @@ const RenderCreateEnvFile = ({ projectName }: RenderCreateEnvFileProps) => {
                                     <Copy className="h-4 w-4" />
                                 </Button>
                                 <Button
+                                    type="submit"
                                     variant="ghost"
                                     size="icon"
-                                    onClick={() => {
-                                        console.log(code);
-                                    }}
                                 >
                                     <SaveIcon className="h-4 w-4" />
                                 </Button>

@@ -170,6 +170,13 @@ export class ApiClient {
             });
             statusCode = response.status;
 
+            if (statusCode === 204) {
+                return {
+                    data: null,
+                    status: statusCode,
+                };
+            }
+
             const data = await response.json();
             if (!response.ok) {
                 errorMessage = data.message;

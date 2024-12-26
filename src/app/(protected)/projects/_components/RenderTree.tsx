@@ -29,14 +29,14 @@ const RenderTree = ({ elements }: { elements: TreeViewElement[] }) => {
                                 value={envName}
                                 isSelectable={isSelectable}
                                 fileIcon={
-                                    envName === "New Environment" ? (
+                                    envName === "New" ? (
                                         <FilePlus className="size-4" />
                                     ) : undefined
                                 }
                                 onClick={() => {
                                     redirect(
                                         `/projects/${projectName}/${
-                                            envName === "New Environment"
+                                            envName === "New"
                                                 ? "/new"
                                                 : envName
                                         }`
