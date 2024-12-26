@@ -92,14 +92,10 @@ const FileTree = () => {
 
     useEffect(() => {
         if (isLoading) return;
-        if (
-            !pathname.includes("new") &&
-            !selectedProject &&
-            !selectedEnvironment
-        ) {
+        if (!pathname.includes("new") && !selectedEnvironment) {
             router.push("/projects/new");
         }
-    }, [pathname, selectedProject, selectedEnvironment, router, isLoading]);
+    }, [pathname, selectedEnvironment, router, isLoading]);
 
     return (
         <>

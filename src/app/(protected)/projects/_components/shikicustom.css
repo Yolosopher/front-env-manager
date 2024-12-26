@@ -1,0 +1,38 @@
+.EDITOR-CLASSNAME {
+    --shikitor-fg-color: hsl(var(--primary)) !important;
+    --shikitor-bg-color: hsl(var(--background)) !important;
+    --shikitor-line-highlight-bg: hsl(var(--background)) !important;
+    --shikitor-caret-color: hsl(var(--primary)) !important;
+    --shikitor-hv-color: hsl(var(--primary)) !important;
+    --shikitor-active-color: hsl(var(--primary)) !important;
+    background-color: hsl(var(--background)) !important;
+    caret-color: hsl(var(--primary)) !important;
+    color: hsl(var(--primary)) !important;
+}
+.EDITOR-CLASSNAME pre {
+    background-color: hsl(var(--background)) !important;
+    caret-color: hsl(var(--primary)) !important;
+}
+.EDITOR-CLASSNAME textarea::selection {
+    background-color: hsl(var(--primary)) !important;
+    color: hsl(var(--primary-foreground)) !important;
+}
+
+.shikitor-cursor__username {
+    display: none;
+}
+ 
+/*
+    --shikitor-cursor-t: 0px;
+    --shikitor-cursor-l: 0px;
+    --shikitor-fg-color: rgb(225, 228, 232);
+    --shikitor-bg-color: rgb(36, 41, 46);
+    --shikitor-caret-color: 
+color-mix(in srgb, var(--shikitor-bg-color), var(--shikitor-fg-color) 90%);
+    --shikitor-hv-color: 
+color-mix(in srgb, var(--shikitor-bg-color), var(--shikitor-fg-color) 80%);
+    --shikitor-active-color: 
+color-mix(in srgb, var(--shikitor-bg-color), var(--shikitor-fg-color) 60%);
+    background-color: rgb(36, 41, 46);
+    color: rgb(225, 228, 232);
+*/

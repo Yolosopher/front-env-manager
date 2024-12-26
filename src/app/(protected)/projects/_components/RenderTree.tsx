@@ -11,18 +11,30 @@ const RenderTree = ({ elements }: { elements: TreeViewElement[] }) => {
                     value={projectName}
                     isSelectable={isSelectable}
                 >
-                    {children?.map(({ name: envName, isSelectable }) => (
+                    {!children ? (
                         <File
-                            key={envName}
-                            value={envName}
+                            value={projectName}
                             isSelectable={isSelectable}
                             onClick={() => {
+                                redirect(`/projects/${projectName}/new`);
+                            }}
+                        >
+                            <p>Create New</p>
+                        </File>
+                    ) : (
+                        children.map(({ name: envName, isSelectable }) => (
+                            <File
+                                key={envName}
+                                value={envName}
+                                isSelectable={isSelectable}
+                                onClick={() => {
                                 redirect(`/projects/${projectName}/${envName}`);
                             }}
                         >
                             <p>{envName}</p>
-                        </File>
-                    ))}
+                            </File>
+                        ))
+                    )}
                 </Folder>
             ))}
         </>
