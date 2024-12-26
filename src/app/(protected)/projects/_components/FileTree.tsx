@@ -12,6 +12,7 @@ import { useParams, usePathname, useRouter } from "next/navigation";
 import NewProjectFolder from "./NewProjectFolder";
 import RenderEnvFile from "./RenderEnvFile";
 import RenderCreateEnvFile from "./RenderCreateEnvFile";
+import { randomUID } from "@/lib/utils";
 
 const FileTree = () => {
     const { args } = useParams();
@@ -51,7 +52,14 @@ const FileTree = () => {
             id: project.id,
             name: project.name,
             isSelectable: true,
-            children: project.environments!.map((env) => ({
+            children: [
+                ...project.environments!,
+                {
+                    id: randomUID(),
+                    name: "New Environment",
+                    isSelectable: true,
+                },
+            ].map((env) => ({
                 id: env.id,
                 name: env.name,
                 isSelectable: true,
@@ -92,10 +100,17 @@ const FileTree = () => {
 
     useEffect(() => {
         if (isLoading) return;
-        if (!pathname.includes("new") && !selectedEnvironment) {
-            router.push("/projects/new");
+        if (!elements?.find((project) => project.name === projectName)) {
+            router.push(`/projects`);
         }
-    }, [pathname, selectedEnvironment, router, isLoading]);
+    }, [projectName, elements, router, isLoading]);
+
+    useEffect(() => {
+        if (isLoading) return;
+        if (!projectName || projectName === "new") {
+            router.push(`/projects`);
+        }
+    }, [pathname, router, isLoading, projectName]);
 
     return (
         <>
@@ -119,7 +134,7 @@ const FileTree = () => {
             {selectedEnvironment ? (
                 <RenderEnvFile environment={selectedEnvironment} />
             ) : (
-                <RenderCreateEnvFile />
+                projectName && <RenderCreateEnvFile projectName={projectName} />
             )}
         </>
     );

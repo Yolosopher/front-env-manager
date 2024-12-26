@@ -1,4 +1,5 @@
-import { Folder, File, TreeViewElement } from "@/components/ui/file-tree";
+import { File, Folder, TreeViewElement } from "@/components/ui/file-tree";
+import { FilePlus } from "lucide-react";
 import { redirect } from "next/navigation";
 
 const RenderTree = ({ elements }: { elements: TreeViewElement[] }) => {
@@ -27,11 +28,22 @@ const RenderTree = ({ elements }: { elements: TreeViewElement[] }) => {
                                 key={envName}
                                 value={envName}
                                 isSelectable={isSelectable}
+                                fileIcon={
+                                    envName === "New Environment" ? (
+                                        <FilePlus className="size-4" />
+                                    ) : undefined
+                                }
                                 onClick={() => {
-                                redirect(`/projects/${projectName}/${envName}`);
-                            }}
-                        >
-                            <p>{envName}</p>
+                                    redirect(
+                                        `/projects/${projectName}/${
+                                            envName === "New Environment"
+                                                ? "/new"
+                                                : envName
+                                        }`
+                                    );
+                                }}
+                            >
+                                <p>{envName}</p>
                             </File>
                         ))
                     )}

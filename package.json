@@ -33,7 +33,7 @@
     "npm": ">=9.0.0"
   },
   "scripts": {
-    "dev": "next dev --turbopack",
+    "dev": "next dev --turbopack --port 3098",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
@@ -63,6 +63,7 @@
     "shiki": "^1.24.4",
     "tailwind-merge": "^2.5.5",
     "tailwindcss-animate": "^1.0.7",
+    "uuid": "^11.0.3",
     "zod": "^3.24.1",
     "zustand": "^5.0.2"
   },

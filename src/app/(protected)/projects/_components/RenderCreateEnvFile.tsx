@@ -9,8 +9,12 @@ import "@shikitor/react/index.css";
 import { Copy, FileIcon, SaveIcon } from "lucide-react";
 import "./shikicustom.css";
 
-const RenderCreateEnvFile = () => {
-    const { form, onSubmit, code, setCode } = useCreateEnv();
+interface RenderCreateEnvFileProps {
+    projectName: string;
+}
+
+const RenderCreateEnvFile = ({ projectName }: RenderCreateEnvFileProps) => {
+    const { form, onSubmit, code, setCode } = useCreateEnv(projectName);
 
     return (
         <>
@@ -29,7 +33,7 @@ const RenderCreateEnvFile = () => {
                                     <FormItem className="flex-1">
                                         <FormControl>
                                             <Input
-                                                placeholder="filename.env"
+                                                placeholder="environment name..."
                                                 className="min-w-48 focus-visible:ring-0 text-sm font-inherit px-0"
                                                 autoFocus
                                                 {...field}

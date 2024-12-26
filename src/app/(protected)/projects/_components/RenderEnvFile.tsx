@@ -19,7 +19,7 @@ const RenderEnvFile = ({ environment }: RenderEnvFileProps) => {
         const envCode = jsonToEnv(environment.variables);
         return {
             envCode,
-            filename: `${environment.name}.env`,
+            filename: environment.name,
         };
     }, [environment]);
 
