@@ -38,6 +38,7 @@ const FileTree = () => {
             return (response.data.data || []) as Project[];
         },
         enabled: !!accessToken,
+        staleTime: 1000 * 60 * 1, // 1 min
     });
 
     const { isLoading, elements, initialExpandedItems } = useMemo(() => {

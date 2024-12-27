@@ -28,6 +28,7 @@ const ApiTokens = () => {
             return (response.data || []) as ApiToken[];
         },
         enabled: !!accessToken,
+        staleTime: 1000 * 60 * 1,
     });
 
     return (
