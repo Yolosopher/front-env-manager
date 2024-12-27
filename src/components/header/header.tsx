@@ -11,6 +11,7 @@ import useAuthStore from "@/stores/auth-store";
 import {
     FolderKey,
     HomeIcon,
+    KeyRound,
     LayoutDashboard,
     LogInIcon,
     LogOutIcon,
@@ -27,6 +28,7 @@ const navbar = {
     homepage: { href: "/", icon: HomeIcon, label: "Home" },
     protected: [
         { href: "/dashboard", icon: LayoutDashboard, label: "Dashboard" },
+        { href: "/api-tokens", icon: KeyRound, label: "API Tokens" },
         { href: "/projects", icon: FolderKey, label: "Projects" },
         { href: "/logout", icon: LogOutIcon, label: "Logout" },
     ],
@@ -94,7 +96,7 @@ const DockMenu = () => {
                     </Tooltip>
                 </DockIcon>
                 <Separator orientation="vertical" className="h-full py-2" />
-                {navbar[auth ? "protected" : "public"].map((item) => (
+                {navbar[auth?.id ? "protected" : "public"].map((item) => (
                     <DockIcon key={item.label}>
                         <Tooltip>
                             <TooltipTrigger asChild>

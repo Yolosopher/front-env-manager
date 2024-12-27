@@ -67,3 +67,7 @@
         @apply bg-background text-foreground;
     }
 }
+
+pre.shiki {
+    background-color: transparent !important;
+}

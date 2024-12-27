@@ -220,6 +220,8 @@ type FolderProps = {
     element: string;
     isSelectable?: boolean;
     isSelect?: boolean;
+    customOpenIcon?: React.ReactNode;
+    customCloseIcon?: React.ReactNode;
 } & FolderComponentProps;
 
 const Folder = forwardRef<
@@ -234,6 +236,8 @@ const Folder = forwardRef<
             isSelectable = true,
             isSelect,
             children,
+            customOpenIcon,
+            customCloseIcon,
             ...props
         },
         ref
@@ -244,8 +248,6 @@ const Folder = forwardRef<
             expandedItems,
             indicator,
             setExpandedItems,
-            openIcon,
-            closeIcon,
         } = useTree();
 
         return (
@@ -268,8 +270,10 @@ const Folder = forwardRef<
                     onClick={() => handleExpand(value)}
                 >
                     {expandedItems?.includes(value)
-                        ? openIcon ?? <FolderOpenIcon className="size-4" />
-                        : closeIcon ?? <FolderIcon className="size-4" />}
+                        ? customOpenIcon ?? (
+                              <FolderOpenIcon className="size-4" />
+                          )
+                        : customCloseIcon ?? <FolderIcon className="size-4" />}
                     <span>{element}</span>
                 </AccordionPrimitive.Trigger>
                 <AccordionPrimitive.Content className="relative h-full overflow-hidden text-sm data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down">
@@ -382,7 +386,6 @@ const CollapseButton = forwardRef<
     }, []);
 
     useEffect(() => {
-        console.log(expandAll);
         if (expandAll) {
             expendAllTree(elements);
         }

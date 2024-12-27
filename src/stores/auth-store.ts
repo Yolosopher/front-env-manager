@@ -13,7 +13,6 @@ const useAuthStore = create<AuthStore>()((set) => ({
     auth: null,
     setAccessToken: (token) => {
         localStorage.setItem("accessToken", token || "");
-
         set({ accessToken: token });
     },
     setAuth: (auth) => set({ auth }),

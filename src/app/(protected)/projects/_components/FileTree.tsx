@@ -1,21 +1,26 @@
 "use client";
-import { Tree } from "@/components/ui/file-tree";
-import { useMemo } from "react";
+import { Tree, TreeViewElement } from "@/components/ui/file-tree";
+import { useEffect, useMemo } from "react";
 import RenderTree from "./RenderTree";
 
-import { useQuery } from "@tanstack/react-query";
 import { projectApi } from "@/api/project.api";
 import { toast } from "@/hooks/use-toast";
 import useAuthStore from "@/stores/auth-store";
+import { useQuery } from "@tanstack/react-query";
 import { Loader2 } from "lucide-react";
+import { useParams, usePathname, useRouter } from "next/navigation";
+import NewProjectFolder from "./NewProjectFolder";
 import RenderEnvFile from "./RenderEnvFile";
-import { useParams } from "next/navigation";
+import RenderCreateEnvFile from "./RenderCreateEnvFile";
+import { randomUID } from "@/lib/utils";
 
 const FileTree = () => {
     const { args } = useParams();
     const projectName = args?.[0];
     const envName = args?.[1];
     const { accessToken } = useAuthStore();
+    const pathname = usePathname();
+    const router = useRouter();
     const { data: projects, isLoading: isLoadingProjects } = useQuery<
         Project[]
     >({
@@ -33,6 +38,7 @@ const FileTree = () => {
             return (response.data.data || []) as Project[];
         },
         enabled: !!accessToken,
+        staleTime: 1000 * 60 * 1, // 1 min
     });
 
     const { isLoading, elements, initialExpandedItems } = useMemo(() => {
@@ -43,26 +49,37 @@ const FileTree = () => {
                 initialExpandedItems: null,
             };
         }
-        const elements = projects!.map((project) => ({
+        const elements = projects?.map((project) => ({
             id: project.id,
             name: project.name,
             isSelectable: true,
-            children: project.environments!.map((env) => ({
+            children: [
+                ...project.environments!,
+                {
+                    id: randomUID(),
+                    name: "New",
+                    isSelectable: true,
+                },
+            ].map((env) => ({
                 id: env.id,
                 name: env.name,
                 isSelectable: true,
             })),
-        }));
+        })) as TreeViewElement[];
+
         return {
             isLoading: false,
             elements,
-            initialExpandedItems: elements.reduce((acc, { name, children }) => {
-                acc.push(name);
-                if (children) {
-                    acc.push(...children.map((child) => child.name));
-                }
-                return acc;
-            }, [] as string[]),
+            initialExpandedItems: elements?.reduce(
+                (acc, { name, children }) => {
+                    acc.push(name);
+                    if (children) {
+                        acc.push(...children.map((child) => child.name));
+                    }
+                    return acc;
+                },
+                [] as string[]
+            ),
         };
     }, [projects, isLoadingProjects]);
 
@@ -82,6 +99,20 @@ const FileTree = () => {
         );
     }, [selectedProject, envName]);
 
+    useEffect(() => {
+        if (isLoading) return;
+        if (!elements?.find((project) => project.name === projectName)) {
+            router.push(`/projects`);
+        }
+    }, [projectName, elements, router, isLoading]);
+
+    useEffect(() => {
+        if (isLoading) return;
+        if (!projectName || projectName === "new") {
+            router.push(`/projects`);
+        }
+    }, [pathname, router, isLoading, projectName]);
+
     return (
         <>
             <div className="flex w-1/4 flex-shrink-0 shadow-md shadow-border">
@@ -97,11 +128,14 @@ const FileTree = () => {
                         initialSelectedId={selectedEnvironment?.name}
                     >
                         {<RenderTree elements={elements!} />}
+                        <NewProjectFolder />
                     </Tree>
                 )}
             </div>
-            {selectedEnvironment && (
+            {selectedEnvironment ? (
                 <RenderEnvFile environment={selectedEnvironment} />
+            ) : (
+                projectName && <RenderCreateEnvFile projectName={projectName} />
             )}
         </>
     );

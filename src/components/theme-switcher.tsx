@@ -28,7 +28,7 @@ export function ThemeSwitcher({
                 <Button
                     variant="ghost"
                     size="icon"
-                    className={cn(className)}
+                    className={cn("focus-visible:ring-0", className)}
                     aria-label={ariaLabel}
                 >
                     <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
@@ -36,15 +36,12 @@ export function ThemeSwitcher({
                     <span className="sr-only">Toggle theme</span>
                 </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
+            <DropdownMenuContent align="end" className="focus-visible:ring-0">
                 <DropdownMenuItem onClick={() => setTheme("light")}>
                     Light
                 </DropdownMenuItem>
                 <DropdownMenuItem onClick={() => setTheme("dark")}>
                     Dark
-                </DropdownMenuItem>
-                <DropdownMenuItem onClick={() => setTheme("system")}>
-                    System
                 </DropdownMenuItem>
             </DropdownMenuContent>
         </DropdownMenu>

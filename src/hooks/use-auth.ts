@@ -10,6 +10,18 @@ import { z } from "zod";
 import { toast } from "./use-toast";
 import { useCallback } from "react";
 
+const loggedOutAuthState: AuthState = {
+    id: "",
+    email: "",
+    fullName: "",
+    provider: null,
+    providerId: null,
+    avatar: null,
+    deleted: false,
+    createdAt: "",
+    updatedAt: "",
+};
+
 const useAuth = () => {
     const { accessToken, setAccessToken, setAuth } = useAuthStore();
 
@@ -52,7 +64,7 @@ const useAuth = () => {
 
     const logout = useCallback(async () => {
         setAccessToken("");
-        setAuth(null);
+        setAuth(loggedOutAuthState);
     }, [setAccessToken, setAuth]);
 
     const getProfile = useCallback(async () => {
