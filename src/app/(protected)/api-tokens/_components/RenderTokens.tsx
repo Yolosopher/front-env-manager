@@ -10,7 +10,7 @@ type RenderTokensProps = {
 
 const TOKEN_ITEM_DEFAULT_WIDTH = 250;
 const TOKEN_ITEM_GAP = 24;
-const TOKEN_ITEM_SIDE_PADDING_TOTAL = 48;
+const TOKEN_ITEM_SIDE_PADDING_TOTAL = 48 + 2 * 16;
 
 const RenderTokens = ({ tokens, isLoadingApiTokens }: RenderTokensProps) => {
     const [tokenItemWidth, setTokenItemWidth] = useState(
@@ -20,10 +20,12 @@ const RenderTokens = ({ tokens, isLoadingApiTokens }: RenderTokensProps) => {
     useEffect(() => {
         const handleResize = () => {
             setTokenItemWidth(
-                (window.innerWidth -
-                    TOKEN_ITEM_SIDE_PADDING_TOTAL -
-                    TOKEN_ITEM_GAP) /
-                    2
+                window.innerWidth >= 768
+                    ? (window.innerWidth -
+                          TOKEN_ITEM_SIDE_PADDING_TOTAL -
+                          TOKEN_ITEM_GAP) /
+                          2
+                    : window.innerWidth - TOKEN_ITEM_SIDE_PADDING_TOTAL
             );
         };
 

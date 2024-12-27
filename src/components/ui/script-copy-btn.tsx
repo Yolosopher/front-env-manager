@@ -59,7 +59,7 @@ export default function ScriptCopyBtn({
             <div className="w-full pl-1">
                 <div className=" flex items-center justify-between"></div>
                 <div className="relative flex items-center">
-                    <div className="min-w-[300px] grow font-mono">
+                    <div className="grow font-mono">
                         {highlightedCode ? (
                             <div
                                 className={`[&>pre]:overflow-x-auto [&>pre]:rounded-md [&>pre]:p-2 [&>pre]:px-4 [&>pre]:font-mono [&>pre::-webkit-scrollbar]:hidden [&>pre]:scrollbar-none ${

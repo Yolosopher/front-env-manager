@@ -46,24 +46,7 @@ const TokenItem = ({ token, width }: TokenItemProps) => {
     }, [accessToken, queryClient, token.id]);
 
     return (
-        <div className="flex flex-col gap-2">
-            <div className="flex items-start justify-between">
-                <h2 className="text-lg font-medium tracking-tight text-muted-foreground capitalize flex items-center gap-2">
-                    <span className="text-primary font-semibold">
-                        {token.name}
-                    </span>
-                </h2>
-                <Confirmation
-                    title="Delete API Token"
-                    description="Are you sure you want to delete this API token?"
-                    onConfirm={handleDelete}
-                    triggerContent={
-                        <Button variant="destructive" size={"icon"}>
-                            <Trash2 className="h-4 w-4" />
-                        </Button>
-                    }
-                />
-            </div>
+        <Card className="flex flex-col gap-2 p-4">
             {isScratched ? (
                 <div className="flex items-center justify-center overflow-hidden rounded-2xl border-2 fonts">
                     <ScriptCopyBtn
@@ -89,7 +72,28 @@ const TokenItem = ({ token, width }: TokenItemProps) => {
                     </ScratchToReveal>
                 </Card>
             )}
-        </div>
+            <div className="flex items-end justify-end gap-4">
+                <h2 className="text-2xl font-medium tracking-tight text-muted-foreground capitalize flex items-center gap-2 leading-none">
+                    <span className="text-primary font-semibold">
+                        {token.name}
+                    </span>
+                </h2>
+                <Confirmation
+                    title="Delete API Token"
+                    description="Are you sure you want to delete this API token?"
+                    onConfirm={handleDelete}
+                    triggerContent={
+                        <Button
+                            variant="destructive"
+                            className="size-7"
+                            size={"icon"}
+                        >
+                            <Trash2 className="size-4 text-xs" />
+                        </Button>
+                    }
+                />
+            </div>
+        </Card>
     );
 };
 
