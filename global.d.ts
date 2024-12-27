@@ -29,3 +29,12 @@ type Project = {
     userId: string;
     environments: Environment[];
 };
+
+type ApiToken = {
+    id: string;
+    apiToken: string;
+    name: string;
+    createdAt: string;
+    updatedAt: string;
+    userId: string;
+};
