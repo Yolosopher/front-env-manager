@@ -1,82 +1,78 @@
 {
-  "name": "front-env-manager",
-  "version": "1.0.0",
-  "description": "A Next.js frontend application for managing environment variables across different projects and environments",
-  "author": {
-    "name": "Nika Nishnianidze",
-    "email": "nika.nishnianidze.10@gmail.com",
-    "url": "https://github.com/Yolosopher",
-    "github": "https://github.com/Yolosopher",
-    "website": "https://yolosopher.site"
-  },
-  "private": true,
-  "license": "MIT",
-  "homepage": "https://github.com/Yolosopher/front-env-manager",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Yolosopher/front-env-manager.git"
-  },
-  "bugs": {
-    "url": "https://github.com/Yolosopher/front-env-manager/issues"
-  },
-  "keywords": [
-    "nextjs",
-    "react",
-    "typescript",
-    "environment-variables",
-    "dashboard",
-    "oauth",
-    "jwt"
-  ],
-  "engines": {
-    "node": ">=18.17.0",
-    "npm": ">=9.0.0"
-  },
-  "scripts": {
-    "dev": "next dev --turbopack --port 3098",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
-  },
-  "dependencies": {
-    "@hookform/resolvers": "^3.9.1",
-    "@radix-ui/react-accordion": "^1.2.2",
-    "@radix-ui/react-alert-dialog": "^1.1.4",
-    "@radix-ui/react-dialog": "^1.1.4",
-    "@radix-ui/react-dropdown-menu": "^2.1.4",
-    "@radix-ui/react-label": "^2.1.1",
-    "@radix-ui/react-scroll-area": "^1.2.2",
-    "@radix-ui/react-separator": "^1.1.1",
-    "@radix-ui/react-slot": "^1.1.1",
-    "@radix-ui/react-toast": "^1.2.4",
-    "@radix-ui/react-tooltip": "^1.1.6",
-    "@shikitor/react": "^0.1.6",
-    "@tanstack/react-query": "^5.62.10",
-    "class-variance-authority": "^0.7.1",
-    "clsx": "^2.1.1",
-    "framer-motion": "^11.15.0",
-    "lucide-react": "^0.469.0",
-    "next": "15.1.2",
-    "next-themes": "^0.4.4",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "react-hook-form": "^7.54.2",
-    "shiki": "^1.24.4",
-    "tailwind-merge": "^2.5.5",
-    "tailwindcss-animate": "^1.0.7",
-    "uuid": "^11.0.3",
-    "zod": "^3.24.1",
-    "zustand": "^5.0.2"
-  },
-  "devDependencies": {
-    "@eslint/eslintrc": "^3",
-    "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
-    "eslint": "^9",
-    "eslint-config-next": "15.1.2",
-    "postcss": "^8",
-    "tailwindcss": "^3.4.1",
-    "typescript": "^5"
-  }
+    "name": "front-env-manager",
+    "version": "1.0.0",
+    "description": "A Next.js frontend application for managing environment variables across different projects and environments",
+    "author": {
+        "name": "Nika Nishnianidze",
+        "email": "nika.nishnianidze.10@gmail.com",
+        "url": "https://github.com/Yolosopher",
+        "github": "https://github.com/Yolosopher",
+        "website": "https://yolosopher.site"
+    },
+    "private": true,
+    "license": "MIT",
+    "homepage": "https://github.com/Yolosopher/front-env-manager",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Yolosopher/front-env-manager.git"
+    },
+    "bugs": {
+        "url": "https://github.com/Yolosopher/front-env-manager/issues"
+    },
+    "keywords": [
+        "nextjs",
+        "react",
+        "typescript",
+        "environment-variables",
+        "dashboard",
+        "oauth",
+        "jwt"
+    ],
+    "scripts": {
+        "dev": "next dev --turbopack --port 3098",
+        "build": "next build",
+        "start": "next start",
+        "lint": "next lint"
+    },
+    "dependencies": {
+        "@hookform/resolvers": "^3.9.1",
+        "@radix-ui/react-accordion": "^1.2.2",
+        "@radix-ui/react-alert-dialog": "^1.1.4",
+        "@radix-ui/react-dialog": "^1.1.4",
+        "@radix-ui/react-dropdown-menu": "^2.1.4",
+        "@radix-ui/react-label": "^2.1.1",
+        "@radix-ui/react-scroll-area": "^1.2.2",
+        "@radix-ui/react-separator": "^1.1.1",
+        "@radix-ui/react-slot": "^1.1.1",
+        "@radix-ui/react-toast": "^1.2.4",
+        "@radix-ui/react-tooltip": "^1.1.6",
+        "@shikitor/react": "^0.1.6",
+        "@tanstack/react-query": "^5.62.10",
+        "class-variance-authority": "^0.7.1",
+        "clsx": "^2.1.1",
+        "framer-motion": "^11.15.0",
+        "lucide-react": "^0.469.0",
+        "next": "15.1.2",
+        "next-themes": "^0.4.4",
+        "react": "^19.0.0",
+        "react-dom": "^19.0.0",
+        "react-hook-form": "^7.54.2",
+        "shiki": "^1.24.4",
+        "tailwind-merge": "^2.5.5",
+        "tailwindcss-animate": "^1.0.7",
+        "uuid": "^11.0.3",
+        "zod": "^3.24.1",
+        "zustand": "^5.0.2"
+    },
+    "devDependencies": {
+        "@eslint/eslintrc": "^3",
+        "@types/node": "^20",
+        "@types/react": "^19",
+        "@types/react-dom": "^19",
+        "eslint": "^9",
+        "eslint-config-next": "15.1.2",
+        "postcss": "^8",
+        "tailwindcss": "^3.4.1",
+        "typescript": "^5"
+    }
 }
