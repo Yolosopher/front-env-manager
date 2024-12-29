@@ -31,16 +31,8 @@ const GithubCallback = () => {
                 <h1 className="text-2xl font-semibold">
                     Github Authentication
                 </h1>
-                <div className="rounded-lg bg-muted p-4 w-full overflow-auto">
-                    <p className="text-sm text-muted-foreground">
-                        Access Token:
-                    </p>
-                    <code className="text-sm w-full overflow-hidden">
-                        {paramToken || "No access token"}
-                    </code>
-                </div>
                 {error && (
-                    <div className="rounded-lg bg-destructive/15 p-4 text-destructive">
+                    <div className="rounded-lg bg-destructive/15 p-4 text-destructive text-center">
                         {error}
                     </div>
                 )}
