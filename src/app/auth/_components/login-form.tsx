@@ -1,5 +1,4 @@
 "use client";
-import { cn } from "@/lib/utils";
 import {
     Card,
     CardContent,
@@ -7,11 +6,9 @@ import {
     CardHeader,
     CardTitle,
 } from "@/components/ui/card";
+import { cn } from "@/lib/utils";
 import Link from "next/link";
 
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
 import { Button } from "@/components/ui/button";
 import {
     Form,
@@ -22,14 +19,17 @@ import {
     FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { loginSchema } from "./auth.validations";
 import useAuth from "@/hooks/use-auth";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { loginSchema } from "./auth.validations";
 
 export function LoginForm({
     className,
     ...props
 }: React.ComponentPropsWithoutRef<"div">) {
-    const { login } = useAuth();
+    const { login, githubAuth } = useAuth();
     const form = useForm<z.infer<typeof loginSchema>>({
         resolver: zodResolver(loginSchema),
         defaultValues: {
@@ -100,7 +100,12 @@ export function LoginForm({
                                 <Button type="submit" className="w-full">
                                     Login
                                 </Button>
-                                <Button variant="outline" className="w-full">
+                                <Button
+                                    variant="outline"
+                                    className="w-full"
+                                    type="button"
+                                    onClick={githubAuth}
+                                >
                                     Login with Github
                                 </Button>
                             </div>
