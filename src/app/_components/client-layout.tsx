@@ -1,9 +1,10 @@
 "use client";
 
-import { useEffect } from "react";
-import useAuthStore from "@/stores/auth-store";
-import useAuth from "@/hooks/use-auth";
 import Header from "@/components/header/header";
+import useAuth from "@/hooks/use-auth";
+import useAuthStore from "@/stores/auth-store";
+import { useEffect } from "react";
+import AuthLoadingState from "./AuthLoadingState";
 
 const ClientLayout = ({ children }: { children: React.ReactNode }) => {
     const { accessToken } = useAuthStore();
@@ -19,6 +20,7 @@ const ClientLayout = ({ children }: { children: React.ReactNode }) => {
         <>
             <Header />
             {children}
+            <AuthLoadingState />
         </>
     );
 };

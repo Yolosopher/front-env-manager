@@ -15,10 +15,43 @@ const geistMono = Geist_Mono({
     subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-    title: "EnvManager - Manage Environment Variables Across Projects",
+const fullName = "Nika Nishnianidze (Yolosopher)";
+// const veryshortdescription =
+//     "EnvManager - Manage Environment Variables Across Projects";
+const md = {
+    title: "EnvManager",
     description:
         "Securely manage, organize, and control environment variables across multiple projects and environments. Features OAuth authentication, project workspaces, and API token management.",
+    icons: {
+        icon: "/favicon.ico",
+        apple: "/favicon/apple-touch-icon.png",
+        shortcut: "/favicon/apple-touch-icon.png",
+    },
+    creator: fullName,
+    keywords: [
+        "envmanager",
+        "environment",
+        "variables",
+        "yolosopher",
+        "cli-env-manager",
+    ],
+};
+
+export const metadata: Metadata = {
+    title: md.title,
+    description: md.description,
+    icons: md.icons,
+    creator: md.creator,
+    metadataBase: new URL("https://envmanager.yolosopher.site"),
+    openGraph: {
+        title: md.title,
+        description: md.description,
+        url: "https://envmanager.yolosopher.site",
+        siteName: "EnvManager",
+        images: [{ url: "/favicon/android-chrome-192x192.png" }],
+    },
+    manifest: "/favicon/site.webmanifest",
+    keywords: md.keywords,
 };
 
 export default function RootLayout({
